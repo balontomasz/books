@@ -17,7 +17,7 @@ defmodule Books.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Books, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :oauth2,
                     :phoenix_ecto, :postgrex]]
   end
 
@@ -34,6 +34,7 @@ defmodule Books.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:oauth2, "~> 0.3"},
      {:cowboy, "~> 1.0"}]
   end
 end
