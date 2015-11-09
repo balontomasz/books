@@ -9,6 +9,13 @@ defmodule Books.AuthController do
     token = get_token!(provider, code)
     user = get_user!(provider, token)
 
+    user_params = %{email: user["email"], name: user["name"], uid: user["sub"]}
+
+    if is_nil(Books.Repo.get_by(Books.User, user_params)) do
+      changeset = Books.User.changeset(%Books.User{}, user_params)
+      Books.Repo.insert(changeset)
+    end
+
     conn
     |> put_session(:current_user, user)
     |> put_session(:access_token, token.access_token)
