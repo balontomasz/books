@@ -24,7 +24,8 @@ defmodule Books.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/:provider", AuthController, :index
-    get "/:provider/callback", AuthController, :callback
+    get "/:provider/callback", AuthController, :login
+    delete "/", AuthController, :logout
   end
 
   # Other scopes may use custom stacks.

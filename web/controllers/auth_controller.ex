@@ -5,7 +5,7 @@ defmodule Books.AuthController do
     redirect conn, external: authorize_url!(provider)
   end
 
-  def callback(conn, %{"provider" => provider, "code" => code}) do
+  def login(conn, %{"provider" => provider, "code" => code}) do
     token = get_token!(provider, code)
     user = get_user!(provider, token)
 
@@ -19,6 +19,12 @@ defmodule Books.AuthController do
     conn
     |> put_session(:current_user, user)
     |> put_session(:access_token, token.access_token)
+    |> redirect(to: "/")
+  end
+
+  def logout(conn, _params) do
+    conn
+    |> configure_session(drop: true)
     |> redirect(to: "/")
   end
 
