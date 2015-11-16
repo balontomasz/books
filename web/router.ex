@@ -18,6 +18,7 @@ defmodule Books.Router do
 
     get "/", PageController, :index
     resources "/users", UserController
+    resources "/books", BookController
   end
 
   scope "/auth", Books do
