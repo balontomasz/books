@@ -1,0 +1,25 @@
+<nav>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li><%= link("Home", to: page_path(@conn, :index)) %></li>
+        <li><%= link("Books", to: book_path(@conn, :index)) %></li>
+        <li><%= link("Users", to: user_path(@conn, :index)) %></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li>
+          <%= if current_user(@conn) do %>
+            <%= current_user(@conn)["email"] %>
+            <%= tag(:img, src: current_user(@conn)["picture"]) %>
+            <%= link("Sign out", to: auth_path(@conn, :logout), method: :delete) %>
+          <% else %>
+            <%= link("Sign in", to: auth_path(@conn, :index, "google")) %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

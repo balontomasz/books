@@ -19,7 +19,7 @@ defmodule Books.Web do
   def model do
     quote do
       use Ecto.Model
-      
+
     end
   end
 
@@ -38,6 +38,8 @@ defmodule Books.Web do
   def view do
     quote do
       use Phoenix.View, root: "web/templates"
+
+      import Books.Session, only: [current_user: 1]
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]

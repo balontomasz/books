@@ -12,12 +12,8 @@
   </head>
 
   <body>
+    <%= render "navigation.html", conn: @conn %>
     <div class="container" role="main">
-      <%= if current_user(@conn) do %>
-        <%= link("Sign out", to: auth_path(@conn, :logout), method: :delete) %>
-      <% else %>
-        <%= link("Sign in", to: auth_path(@conn, :index, "google")) %>
-      <% end %>
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
