@@ -1,0 +1,23 @@
+<h2>Show borrowing</h2>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @borrowing.user_id %>
+  </li>
+
+  <li>
+    <strong>Book:</strong>
+    <%= @borrowing.book_id %>
+  </li>
+
+  <li>
+    <strong>Returned at:</strong>
+    <%= @borrowing.returned_at %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: borrowing_path(@conn, :edit, @borrowing) %>
+<%= link "Back", to: borrowing_path(@conn, :index) %>

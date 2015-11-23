@@ -28,6 +28,7 @@ defmodule Books.Router do
 
     resources "/users", UserController
     resources "/books", BookController
+    resources "/borrowings", BorrowingController
   end
 
   scope "/auth", Books do

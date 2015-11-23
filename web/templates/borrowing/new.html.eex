@@ -1,0 +1,6 @@
+<h2>New borrowing</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: borrowing_path(@conn, :create) %>
+
+<%= link "Back", to: borrowing_path(@conn, :index) %>
