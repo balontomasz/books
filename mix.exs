@@ -18,7 +18,7 @@ defmodule Books.Mixfile do
   def application do
     [mod: {Books, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :oauth2,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :httpotion]]
   end
 
   # Specifies which paths to compile per environment
@@ -35,6 +35,9 @@ defmodule Books.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:oauth2, "~> 0.3"},
+     {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
+     {:httpotion, "~> 2.1.0"},
+     {:floki, "~> 0.7"},
      {:cowboy, "~> 1.0"}]
   end
 end
