@@ -6,6 +6,8 @@ defmodule Books.User do
     field :email, :string
     field :uid, :string
 
+    has_many :borrowings, Books.Borrowing
+
     timestamps
   end
 

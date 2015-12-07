@@ -1,30 +1,20 @@
-<h2>Listing borrowings</h2>
+<h2>My borrowings</h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>User</th>
       <th>Book</th>
+      <th>Inserted at</th>
       <th>Returned at</th>
-
-      <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for borrowing <- @borrowings do %>
-    <tr>
-      <td><%= borrowing.user_id %></td>
-      <td><%= borrowing.book_id %></td>
-      <td><%= borrowing.returned_at %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: borrowing_path(@conn, :show, borrowing), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: borrowing_path(@conn, :edit, borrowing), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: borrowing_path(@conn, :delete, borrowing), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
+    <%= for borrowing <- @borrowings do %>
+      <tr>
+        <td><%= link(borrowing.book.title, to: book_path(@conn, :show, borrowing.book_id)) %></td>
+        <td><%= borrowing.inserted_at %></td>
+        <td><%= borrowing.returned_at %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-
-<%= link "New borrowing", to: borrowing_path(@conn, :new) %>

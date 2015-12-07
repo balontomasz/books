@@ -28,7 +28,7 @@ defmodule Books.Router do
 
     resources "/users", UserController
     resources "/books", BookController
-    resources "/borrowings", BorrowingController
+    resources "/borrowings", BorrowingController, only: [:index, :create]
   end
 
   scope "/auth", Books do

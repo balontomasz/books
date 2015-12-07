@@ -8,6 +8,8 @@ defmodule Books.Book do
     field :cover, :string
     field :description, :string
 
+    has_many :borrowings, Books.Borrowing
+
     timestamps
   end
 

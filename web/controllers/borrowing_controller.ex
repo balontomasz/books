@@ -6,17 +6,19 @@ defmodule Books.BorrowingController do
   plug :scrub_params, "borrowing" when action in [:create, :update]
 
   def index(conn, _params) do
-    borrowings = Repo.all(Borrowing)
+    current_user = get_session(conn, :current_user)
+    user = Repo.get_by(Books.User, email: current_user["email"]) |> Repo.preload(:borrowings)
+
+    borrowings = user.borrowings |> Repo.preload(:book)
+
     render(conn, "index.html", borrowings: borrowings)
   end
 
-  def new(conn, _params) do
-    changeset = Borrowing.changeset(%Borrowing{})
-    render(conn, "new.html", changeset: changeset)
-  end
-
   def create(conn, %{"borrowing" => borrowing_params}) do
-    changeset = Borrowing.changeset(%Borrowing{}, borrowing_params)
+    current_user = get_session(conn, :current_user)
+    user = Repo.get_by(Books.User, email: current_user["email"])
+
+    changeset = Borrowing.changeset(%Borrowing{}, Map.put(borrowing_params, "user_id", user.id))
 
     case Repo.insert(changeset) do
       {:ok, _borrowing} ->

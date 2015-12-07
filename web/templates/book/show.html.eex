@@ -31,3 +31,8 @@
 
 <%= link "Edit", to: book_path(@conn, :edit, @book) %>
 <%= link "Back", to: book_path(@conn, :index) %>
+
+<%= form_tag(borrowing_path(@conn, :create), method: :post) do %>
+  <input type='hidden' name='borrowing[book_id]' value="<%= @book.id %>">
+  <input type='submit' value='Borrow'>
+<% end %>

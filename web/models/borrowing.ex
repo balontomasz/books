@@ -9,8 +9,8 @@ defmodule Books.Borrowing do
     timestamps
   end
 
-  @required_fields ~w(returned_at)
-  @optional_fields ~w()
+  @required_fields ~w(book_id user_id)
+  @optional_fields ~w(returned_at)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
